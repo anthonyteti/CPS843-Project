@@ -1,4 +1,5 @@
 import argparse
+from copy import deepcopy
 import json
 import sys
 from pathlib import Path
@@ -137,7 +138,8 @@ def main() -> None:
             best_val_acc = val_acc
             patience_counter = 0
             best_state = {
-                "model_state": model.state_dict(),
+                # state_dict tensors share storage with the live model.
+                "model_state": deepcopy(model.state_dict()),
                 "variant": args.variant,
                 "label_to_idx": label_to_idx,
                 "val_acc": best_val_acc,

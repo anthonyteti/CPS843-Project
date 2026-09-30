@@ -1,0 +1,76 @@
+{
+  "python": "3.12.0",
+  "packages": {
+    "torch": "2.5.1",
+    "torchvision": "0.20.1",
+    "numpy": "1.26.3",
+    "pandas": "1.5.3",
+    "scikit-learn": "1.5.2",
+    "Pillow": "10.2.0",
+    "matplotlib": "3.8.2"
+  },
+  "device": "cpu",
+  "data_sha256": {
+    "sign_mnist_train.csv": "4c2897f19fab2b0ae2a7e4fa82e969043315d9f3a1a9cc0948b576bf1189a7e5",
+    "sign_mnist_test.csv": "0e9d67bae23e67f40728e0b63bf15ad4bd5175947b8a9fac5dd9f17ce133c47b"
+  },
+  "n_train": 24710,
+  "n_validation": 2745,
+  "n_test": 7172,
+  "exact_pixel_hash_overlap_train_test": 0,
+  "commands": [
+    [
+      "python.exe",
+      "-u",
+      "src/cnn/train_sign_cnn.py",
+      "--variant",
+      "large",
+      "--image_size",
+      "48",
+      "--augment",
+      "--epochs",
+      "20",
+      "--seed",
+      "42",
+      "--num_workers",
+      "0",
+      "--checkpoint_path",
+      "results/reproduction/sign_cnn_large_aug.pt",
+      "--plots_dir",
+      "results/reproduction"
+    ],
+    [
+      "python.exe",
+      "-u",
+      "src/cnn/eval_sign_cnn.py",
+      "--checkpoint",
+      "results/reproduction/sign_cnn_large_aug.pt",
+      "--image_size",
+      "48",
+      "--seed",
+      "42",
+      "--num_workers",
+      "0",
+      "--output_dir",
+      "results/reproduction"
+    ]
+  ],
+  "protocol": "One seed (42), large CNN, augmentation, 48px, max 20 epochs, patience 5; select by validation accuracy.",
+  "limitations": [
+    "One run does not measure across-seed uncertainty.",
+    "Static benchmark images do not establish real-world signing accuracy.",
+    "This is an image split, not a verified signer-disjoint split."
+  ],
+  "checkpoint_sha256": "8994a88596a298e435403797b4ff03ff87c83af83492f8237485f33e8c1fd87a",
+  "cpu_thread_limit": 4,
+  "selected_epoch": 20,
+  "test_accuracy_matches_independent_checkpoint_evaluation": true,
+  "source_sha256": {
+    "src/cnn/train_sign_cnn.py": "5f00ef2ab92ab010329c6566e450aa6f696b1b95d5d4c5963ab97064bd322e37",
+    "src/cnn/models.py": "b7d9f10b7a5b9918c1edaa5dfe0393c70239ab47760d0f2bc4730122aa0a2d7e",
+    "src/sign_mnist_dataset.py": "b509c4e3c9015f8396f47359ddd6b8bfb8f3ae23bb728effee133878f2a35656",
+    "src/utils.py": "23bcf1bf169cba73956930c34e1a47ff08e830134967b5d4ff2c5e9ecccaeacb",
+    "src/cnn/eval_sign_cnn.py": "f8b98ee96c3ded587ffb5d98e4518042b32b30e384bb015b9966abd7d383f0cf"
+  },
+  "historical_checkpoint_sha256": "8c066a4f27abc25b6dbf71fa28e81b21ffd984a27cee4cdf7809c1f01a34f1a5"
+}

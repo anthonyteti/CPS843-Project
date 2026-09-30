@@ -1,0 +1,25 @@
+Using device: cpu
+Model parameters: 261,912
+Epoch 1/20 train_loss=2.3104 train_acc=0.2613 val_loss=1.9943 val_acc=0.3526
+Epoch 2/20 train_loss=1.3938 train_acc=0.4986 val_loss=2.1488 val_acc=0.3362
+Epoch 3/20 train_loss=1.0123 train_acc=0.6329 val_loss=2.1428 val_acc=0.3789
+Epoch 4/20 train_loss=0.7454 train_acc=0.7382 val_loss=2.2941 val_acc=0.4193
+Epoch 5/20 train_loss=0.6141 train_acc=0.7902 val_loss=0.7552 val_acc=0.7107
+Epoch 6/20 train_loss=0.4697 train_acc=0.8416 val_loss=1.2012 val_acc=0.5913
+Epoch 7/20 train_loss=0.4139 train_acc=0.8641 val_loss=0.7315 val_acc=0.7202
+Epoch 8/20 train_loss=0.3122 train_acc=0.8990 val_loss=0.8335 val_acc=0.6969
+Epoch 9/20 train_loss=0.2755 train_acc=0.9130 val_loss=0.4320 val_acc=0.8546
+Epoch 10/20 train_loss=0.2206 train_acc=0.9305 val_loss=0.2410 val_acc=0.9086
+Epoch 11/20 train_loss=0.1685 train_acc=0.9503 val_loss=0.3523 val_acc=0.8867
+Epoch 12/20 train_loss=0.1791 train_acc=0.9452 val_loss=0.1133 val_acc=0.9614
+Epoch 13/20 train_loss=0.1330 train_acc=0.9606 val_loss=0.8345 val_acc=0.7756
+Epoch 14/20 train_loss=0.1693 train_acc=0.9507 val_loss=0.9672 val_acc=0.6754
+Epoch 15/20 train_loss=0.1372 train_acc=0.9592 val_loss=0.0422 val_acc=0.9894
+Epoch 16/20 train_loss=0.0872 train_acc=0.9751 val_loss=0.1778 val_acc=0.9399
+Epoch 17/20 train_loss=0.0774 train_acc=0.9769 val_loss=0.1375 val_acc=0.9548
+Epoch 18/20 train_loss=0.1070 train_acc=0.9684 val_loss=4.6796 val_acc=0.4000
+Epoch 19/20 train_loss=0.1701 train_acc=0.9507 val_loss=0.3537 val_acc=0.8718
+Epoch 20/20 train_loss=0.1060 train_acc=0.9690 val_loss=0.0265 val_acc=0.9949
+Saved best checkpoint to C:\Users\antho\Documents\Codex\2026-09-28\ok\work\audit\CPS843-Project\results\reproduction\sign_cnn_large_aug.pt
+Test loss: 0.0534 | Test acc: 0.9861
+Saved metrics to C:\Users\antho\Documents\Codex\2026-09-28\ok\work\audit\CPS843-Project\results\reproduction\large_metrics.json
