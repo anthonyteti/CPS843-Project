@@ -17,7 +17,48 @@ This project implements and compares two approaches for static ASL alphabet reco
 - Training: 27,455 samples (28×28 grayscale)
 - Test: 7,172 samples
 
-## Key Results
+## Corrected trainer: 20-epoch maximum rerun
+
+The large augmented CNN was retrained after fixing the best-checkpoint snapshot.
+This single-seed run used **24,710 training images**, **2,745 validation images**,
+and **7,172 test images**. The supplied training and test CSVs share no identical
+pixel-row hashes. Validation is an image-level random split, not a verified
+signer-disjoint split.
+
+| Setting / result | Value |
+|---|---|
+| Seed | 42 |
+| Input / batch size | 48 × 48 / 128 |
+| Optimizer | Adam, learning rate 0.001 |
+| Training limit / early-stopping patience | 20 / 5 epochs |
+| Completed epochs / selected epoch | 20 / 20 |
+| Best validation accuracy | 99.49% |
+| Test accuracy | **98.61%** |
+| Runtime | CPU, four compute threads, no data-loader workers |
+
+Independent evaluation of the saved checkpoint gave the same test accuracy as
+the trainer. This is a rerun of the existing selected configuration, not a new
+model-selection study or an estimate of performance on real-world signing.
+The historical 31-epoch experiment and this run use different training limits;
+their difference cannot be attributed solely to the checkpoint fix.
+
+To repeat after placing the dataset CSVs in `data/raw/sign_mnist/`:
+
+```bash
+python src/reproduce_sign_cnn.py
+```
+
+The [manifest](results/reproduction/manifest.json) records runtime versions,
+dataset and source hashes, and the exact commands. Artifacts include
+[split indices](results/reproduction/split_indices.csv),
+[training log](results/reproduction/training.log),
+[metrics](results/reproduction/large_metrics.json),
+[independent evaluation](results/reproduction/cnn_eval_metrics.json), and
+[the selected checkpoint](results/reproduction/sign_cnn_large_aug.pt).
+
+![Training and validation accuracy](results/reproduction/large_acc.png)
+
+## Historical Results
 
 | Model | Test Accuracy | Parameters |
 |-------|--------------|------------|
@@ -29,7 +70,12 @@ This project implements and compares two approaches for static ASL alphabet reco
 | Medium CNN + augmentation | 39.22% | 30k |
 | **Large CNN + augmentation** | **96.63%** | 262k |
 
-**Key Finding:** The Large CNN achieves 96.63% accuracy only when paired with data augmentation (rotations, translations, scaling). Without augmentation, larger models severely overfit.
+The large augmented CNN has the highest test accuracy among these recorded
+experiments. An independent evaluation of its original committed checkpoint
+reproduced **96.63%** on the supplied 7,172-image test set. Its training metadata
+records **31 epochs**, so this result should not be presented as the output of
+the 20-epoch quick-start command below. The other historical experiments have
+not been independently rerun in this audit.
 
 ## Repository Structure
 
@@ -139,9 +185,9 @@ python -m unittest discover -s tests -v
 
 The test runs the actual training orchestration with a tiny model and controlled
 validation scores, checking that later epochs cannot overwrite the best weights.
-It does not require the dataset. The committed experiment results are historical;
-they have not been regenerated after the checkpoint snapshot fix. Re-running the
-experiments is required to establish results for the corrected trainer.
+It does not require the dataset. The corrected large augmented model has now been
+rerun with the recorded protocol above; the other model configurations remain
+historical results.
 
 ## Citation
 

@@ -1,0 +1,8 @@
+{
+  "variant": "large",
+  "augment": true,
+  "image_size": 48,
+  "best_val_acc": 0.9948998178506375,
+  "test_acc": 0.9860568878973787,
+  "train_epochs": 20
+}
