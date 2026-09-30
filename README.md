@@ -123,7 +123,25 @@ Outputs: Test accuracy, confusion matrix
 
 Core libraries: PyTorch, torchvision, scikit-learn, scikit-image, numpy, pandas, matplotlib
 
-See `requirements.txt` for full list with versions.
+See `requirements.txt` for the full dependency list; versions are currently unpinned.
+
+## Reproducing and testing
+
+Download the Sign Language MNIST CSV files from the dataset linked below and place
+`sign_mnist_train.csv` and `sign_mnist_test.csv` in `data/raw/sign_mnist/` before
+running training or evaluation. Use the same `--image_size` for both commands.
+
+Run the checkpoint regression test from the repository root:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+The test runs the actual training orchestration with a tiny model and controlled
+validation scores, checking that later epochs cannot overwrite the best weights.
+It does not require the dataset. The committed experiment results are historical;
+they have not been regenerated after the checkpoint snapshot fix. Re-running the
+experiments is required to establish results for the corrected trainer.
 
 ## Citation
 
